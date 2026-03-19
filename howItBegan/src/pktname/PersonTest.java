@@ -10,5 +10,11 @@ public class PersonTest {
         assertEquals("Hiiii",Kassandra.shouldReturnYourName());
     }
 
+    @Test
+    public void shouldReturnHellYeahMarcus(){
+        Person person = new Person();
+        assertEquals("Hell Yeah Marcus",person.hello("Marcus"));
+    }
+
 
 }
