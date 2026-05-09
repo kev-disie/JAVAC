@@ -51,6 +51,10 @@ public class Notepad implements ActionListener{
         menuBar.add(View);
         menuBar.add(Document);
 
+        JPanel p1 = new JPanel();
+        p1.add(textArea);
+        JPanel p2 
+
         f.add(popupMenu);
         f.add(menuBar);
         f.add(textArea);

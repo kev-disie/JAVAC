@@ -5,7 +5,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.Desktop.Action;
 import java.awt.event.*;
 import java.util.Arrays;
 
@@ -14,21 +13,23 @@ public class ScientificCalc {
     // int boardWidth = 360;
     // int boardHeigth = 540;
 
-    Color customLightgrey = new Color(212, 212, 210);
-    Color customDarkgrey = new Color(80, 80,80);
+    Color customSpringGreen = new Color(0,250,154);
+    Color customSlate = new Color(47, 79,79);
     Color customBlack = new Color(28, 28, 28);
-    Color customOrange = new Color(255, 149, 0);
+    Color customTeal = new Color(0, 128,128);
+    Color customMidNightBlue = new Color(25,25,112);
 
 
     String[] buttonValues = {
-        "AC", "+/-", "%", "÷", 
-        "7", "8", "9", "×", 
-        "4", "5", "6", "-",
-        "1", "2", "3", "+",
-        "0", ".", "√", "="
+        "AC", "+/-", "%", "÷", "x³",
+        "7", "8", "9", "×", "log",
+        "4", "5", "6", "-","tan",
+        "1", "2", "3", "+","SINE",
+        "0", ".", "√", "=", "COS"
     };
     String[] rightSymbols = {"÷", "×", "-", "+", "="};
     String[] topSymbols = {"AC", "+/-", "%"};
+    String[] rightMostSymbols = {"x³","log","tan","SINE","COS"};
 
 
     JFrame frame = new JFrame("Scientific Calculator");
@@ -38,11 +39,12 @@ public class ScientificCalc {
 
     String A = "0";
     String B = null;
+//    String C = "0";
     String operator = null;
 
     ScientificCalc(){
         frame.setVisible(true);
-        frame.setSize(360,540 );
+
         frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout());
@@ -75,16 +77,21 @@ public class ScientificCalc {
             button.setBorder(new LineBorder(customBlack));
 
             if (Arrays.asList(topSymbols).contains(buttonValue)){
-                button.setBackground(customLightgrey);
+                button.setBackground(customSpringGreen);
                 button.setForeground(customBlack);
             }else if(Arrays.asList(rightSymbols).contains(buttonValue)){
-                button.setBackground(customOrange);
+                button.setBackground(customTeal);
                 button.setForeground(Color.white);
-            }else{
-                button.setBackground(customDarkgrey);
+            } else if (Arrays.asList(rightMostSymbols).contains(buttonValue)) {
+                button.setBackground(customMidNightBlue);
+                button.setForeground(Color.white);
+
+            }else {
+                button.setBackground(customSlate);
                 button.setForeground(Color.white);
 
             }
+
 
             buttonsPanel.add(button);
             button.addActionListener(new ActionListener() {
@@ -98,6 +105,7 @@ public class ScientificCalc {
                                 B = displayLabel.getText();
                                 double numA = Double.parseDouble(A);
                                 double numB = Double.parseDouble(B);
+//                                double numC = Double.parseDouble(C);
 
                                 if (operator == "+"){
                                     displayLabel.setText(removeZeroDecimal(numA + numB));
@@ -108,6 +116,10 @@ public class ScientificCalc {
                                 } else if (operator == "÷") {
                                     displayLabel.setText(removeZeroDecimal(numA / numB));
 
+                                } else if (operator == "√") {
+                                   if (numB == numA){
+                                       displayLabel.setText(removeZeroDecimal((numA)));
+                                   }
                                 }
                                 clearAll();
                             }
@@ -142,12 +154,16 @@ public class ScientificCalc {
 
                         }
 
-                    }else{
+                    } else if (Arrays.asList(rightMostSymbols).contains(buttonValue)) {
+                        if (buttonValue == "SINE"){
+                            double sin = Math.sin(Math.toRadians());
+                        }
+
+                    } else{
                         if (buttonValue == "."){
                             if(!displayLabel.getText().contains(buttonValue)){
                                 displayLabel.setText(displayLabel.getText() + buttonValue);
                             }
-
                         }else if ("0123456789".contains(buttonValue)){
                             if (displayLabel.getText() == "0"){
                                 displayLabel.setText(buttonValue);
@@ -159,8 +175,9 @@ public class ScientificCalc {
                 }
             });
         }
-
+        frame.setSize(360,540);
     }
+
     public static void main(String args[]){
 
         new ScientificCalc();
