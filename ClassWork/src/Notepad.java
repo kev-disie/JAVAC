@@ -23,7 +23,7 @@ public class Notepad implements ActionListener{
         Help = new JMenu("Help");
         Search = new JMenu("Search");
         View = new JMenu("View");
-        Document = new JMenu("Documents");
+        Document = new JMenu("Document");
 
 
 //        Edit.add(cut);
@@ -53,7 +53,7 @@ public class Notepad implements ActionListener{
 
         JPanel p1 = new JPanel();
         p1.add(textArea);
-        JPanel p2 
+        JPanel p2;;
 
         f.add(popupMenu);
         f.add(menuBar);
