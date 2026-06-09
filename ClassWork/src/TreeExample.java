@@ -2,8 +2,13 @@ import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.MutableTreeNode;
 
+import java.awt.*;
+
+import static java.awt.Color.*;
 import static java.awt.Color.blue;
 import static java.awt.Color.red;
+import static java.awt.Color.black;
+
 
 //import static java.awt.Color.blue;
 //import static java.awt.Color.red;
@@ -18,16 +23,17 @@ public class TreeExample{
        DefaultMutableTreeNode green = new DefaultMutableTreeNode("green");
        color.add((MutableTreeNode) red);
        color.add((MutableTreeNode) blue);
-        color.add(black);
-       color.add(green);
+//       Color CustomColor =
+//        Color.add((MutableTreeNode) black);
+//       Color.add(green);
        JTree jt = new JTree(style);
        f.add(jt);
-       f.setSize(200,200);
+       f.setSize(200,300);
        f.setVisible(true);
 
    }
 
-   public static void main(String[] args){
+   public static void main(String[] args) {
        new TreeExample();
    }
 }

@@ -35,7 +35,7 @@ public class FoodOrderingSystem implements ActionListener, ItemListener {
 
     public FoodOrderingSystem() {
         frame = new JFrame("Food Ordering System");
-        frame.setSize(760, 720);
+        frame.setSize(760, 750);
         frame.setLayout(null);
 
 
